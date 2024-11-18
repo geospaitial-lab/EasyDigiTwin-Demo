@@ -39,7 +39,8 @@
       'cameraUp': [0, -1, 0],
       'initialCameraPosition': [-0.20127, 0.04264, -0.08316],
       'initialCameraLookAt': [	-0.90526, -0.18461, 0.18488],
-      'sphericalHarmonicsDegree': 2
+      'sphericalHarmonicsDegree': 2,
+      "sharedMemoryForWorkers": false
     });
     let path = 'https://huggingface.co/datasets/geospaitial-lab/EasyDigiTwin-Demo/resolve/main/garden'+ (mode ? '' : '_sh_0') +'.ksplat';
     viewer.addSplatScene(path, {

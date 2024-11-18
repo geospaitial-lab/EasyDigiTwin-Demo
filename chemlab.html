@@ -39,7 +39,8 @@
       'cameraUp': [0.00617, -0.99081, -0.13513],
       'initialCameraPosition': [1.97184, 0.25548, -1.38011],
       'initialCameraLookAt': [-0.17252, 0.50728, -0.76186],
-      'sphericalHarmonicsDegree': 2
+      'sphericalHarmonicsDegree': 2,
+      "sharedMemoryForWorkers": false
     });
     let path = 'https://huggingface.co/datasets/geospaitial-lab/EasyDigiTwin-Demo/resolve/main/Chemlab'+ (mode ? '' : '_sh_0') +'.ksplat';
     viewer.addSplatScene(path, {
