@@ -1,0 +1,28 @@
+name: Build and Deploy
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+jobs:
+    build_and_deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+            - name: Setup Node
+              uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af
+
+            - name: Build
+              run: |
+                  npm ci
+                  npm run build
+
+            - name: Deploy
+              uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./build/demo
