@@ -504,12 +504,12 @@ export class Viewer {
                         this.splatMesh.setPointCloudModeEnabled(!this.splatMesh.getPointCloudModeEnabled());
                     }
                 break;
-                case 'Equal':
+                case 'Digit2':
                     if (!this.usingExternalCamera) {
-                        this.splatMesh.setSplatScale(this.splatMesh.getSplatScale() + 0.05);
+                        this.splatMesh.setSplatScale(Math.min(this.splatMesh.getSplatScale() + 0.05, 1.0));
                     }
                 break;
-                case 'Minus':
+                case 'Digit1':
                     if (!this.usingExternalCamera) {
                         this.splatMesh.setSplatScale(Math.max(this.splatMesh.getSplatScale() - 0.05, 0.0));
                     }

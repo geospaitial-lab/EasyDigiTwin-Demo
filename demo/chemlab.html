@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>3D Gaussian Splat Demo - Truck</title>
+  <title>3D Gaussian Splat Demo - Garden</title>
   <script type="text/javascript" src="js/util.js"></script>
   <script type="importmap">
     {
@@ -34,20 +34,21 @@
 
     const urlParams = new URLSearchParams(window.location.search);
     const mode = parseInt(urlParams.get('mode')) || 0;
-
+  
     const viewer = new GaussianSplats3D.Viewer({
-        'cameraUp': [0.01933, -0.75830, -0.65161],
-        'initialCameraPosition': [1.54163, 2.68515, -6.37228],
-        'initialCameraLookAt': [0.45622, 1.95338, 1.51278],
-        'sphericalHarmonicsDegree': 2
+      'cameraUp': [0.00617, -0.99081, -0.13513],
+      'initialCameraPosition': [1.97184, 0.25548, -1.38011],
+      'initialCameraLookAt': [-0.17252, 0.50728, -0.76186],
+      'sphericalHarmonicsDegree': 2
     });
-    let path = 'assets/data/bonsai/bonsai' + (mode ? '_high' : '') + '.ksplat';
+    let path = 'https://huggingface.co/datasets/geospaitial-lab/EasyDigiTwin-Demo/resolve/main/Chemlab'+ (mode ? '' : '_sh_0') +'.ksplat';
     viewer.addSplatScene(path, {
-      'progressiveLoad': false
+      'progressiveLoad': true
     })
     .then(() => {
         viewer.start();
     });
+
   </script>
 </body>
 
