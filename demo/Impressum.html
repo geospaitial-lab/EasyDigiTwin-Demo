@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>EasyDigiTwin Demo</title>
+    <style>
+
+        body {
+            background-color: #CCD5DE;
+            height: 100vh;
+            margin: 0px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3333CC;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #1111AA;
+        }
+
+        .demo-content {
+            display: block;
+            margin: 10px;
+        }
+
+        .header-content-container {
+            background-color: #e7e9eb;
+            border-radius: 7px;
+            -moz-box-shadow: 0px 2px 10px -1px rgb(0 0 0 / 39%);
+            -webkit-box-shadow: 0px 2px 10px -1px rgb(0 0 0 / 39%);
+            box-shadow: 0px 2px 10px -1px rgb(0 0 0 / 39%);
+            max-width: 1065px;
+            min-width: 350px;
+            margin: auto;
+            font-family: "PT Sans", Arial, serif;
+            font-size: 12pt;
+        }
+
+        .title {
+            display: flex;
+            text-align: center;
+            padding: 10px;
+            -moz-box-shadow: 0 5px 10px -5px #aaa;
+            -webkit-box-shadow: 0 5px 10px -5px #aaa;
+            box-shadow: 0 5px 10px -5px #aaa;
+            margin-bottom: 15px;
+            font-family: "PT Sans", Arial, serif;
+            font-size: 15pt;
+            color: #111111;
+        }
+
+        .small-title {
+            font-family: "PT Sans", Arial, serif;
+            font-size: 12pt;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 5px;
+        }
+
+        .content-row {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .demo-scene-panel {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            color: #111111;
+            border-radius: 7px;
+            border: #bbbbbb 1px solid;
+            background-color: #f1f1f1;
+            width: 220px;
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+
+        .demo-scene-panel.clickable:hover {
+            color: #333333;
+            border-color: #8a9ba8;
+            background-color: #e4edfc;
+            cursor: pointer;
+        }
+
+        .demo-scene-panel-image {
+            width: 95%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            width: 209px;
+            height: 149px;
+        }
+
+        .demo-scene-button-row {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .demo-scene-button {
+            border-radius: 5px;
+            border: #cccccc 2px solid;
+            background-color: #eeeeee;
+            color: #666666;
+            padding: 3px 7px 3px 7px;
+        }
+
+        .demo-scene-button:hover {
+            color: #333333;
+            border: #aaaaaa 2px solid;
+            background-color: #e7eaf1;
+            cursor: pointer;
+        }
+
+        .button {
+            color: #3C5060;
+            border: #AEC5D7 1px solid;
+            background-color: #E5EAEE;
+            padding: 5px;
+            border-radius: 3px;
+            filter: drop-shadow(2px 2px 3px #aaaaaa);
+        }
+
+        .button:hover {
+            cursor: pointer;
+            color: #1B242B;
+            background-color: #E4EFF9;
+            border-color: #4A5A67;
+        }
+
+        .text-input {
+            border: hsl(0, 0%, 67%) 1px solid;
+            background-color: #ffffff;
+            padding: 4px;
+            border-radius: 3px;
+        }
+
+        .checkbox-input {
+            width: 17px;
+            height: 17px;
+            padding: 0px;
+            margin: 0;
+        }
+
+        .splat-panel {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            color: #111111;
+            font-size: 12pt;
+            font-family: "PT Sans", Arial, serif;
+            border-radius: 7px;
+            border: #bbbbbb 1px solid;
+            background-color: #f1f1f1;
+            width: 310px;
+            height: 280px;
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+
+        .loading-icon {
+            width: 35px;
+            padding: 15px;
+            background: #324d70;
+            z-index: 99999;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            --_m: conic-gradient(#0000, #000),
+            linear-gradient(#000 0 0) content-box;
+            -webkit-mask: var(--_m);
+            mask: var(--_m);
+            -webkit-mask-composite: source-out;
+            mask-composite: subtract;
+            box-sizing: border-box;
+            animation: ply-load 1s linear infinite;
+        }
+
+        .controls-key {
+            font-weight: bold;
+            padding: 3px;
+            border: #aaaaaa 1px solid;
+            background-color: #dddddd;
+        }
+
+        .controls-key-description {
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        .file-ext {
+            border: #bababa 1px solid;
+            border-radius: 3px;
+            background-color: #e6e6e6;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            margin-left: 3px;
+            margin-right: 3px;
+        }
+
+        .file-ext-small {
+            border: #ababab 1px solid;
+            border-radius: 3px;
+            background-color: #dfdfdf;
+            padding-left: 4px;
+            padding-right: 4px;
+            padding-bottom: 1px;
+            margin-left: 3px;
+            margin-right: 3px;
+        }
+
+        .valid-value-label {
+            color: #888888;
+            font-size: 10pt;
+        }
+
+        @keyframes ply-load {
+            to {
+                transform: rotate(1turn)
+            }
+        }
+
+        @media (max-width: 740px) {
+
+            .demo-scene-panel {
+                width: 340px;
+            }
+
+            .splat-panel {
+                width: 340px;
+            }
+
+            .demo-scene-panel-image {
+                width: 95%;
+                height: 95%;
+            }
+
+        }
+
+        @media (max-width: 370px) {
+
+            .demo-scene-panel {
+                max-width: 300px;
+            }
+
+            .splat-panel {
+                max-width: 300px;
+            }
+
+            .header-content-container {
+                min-width: 330px;
+            }
+
+            .demo-scene-panel-image {
+                width: 95%;
+                height: 95%;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="header-content-container">
+        <div class="title">
+            <div style="margin: auto">
+                Impressum
+            </div>
+        </div>
+        <div style="padding-left: 20px; padding-right: 20px;">
+            <h3>
+            <strong>1. Angaben gemäß § 5 des Telemediengesetzes (TMG)</strong>
+            </h3>
+            <p>
+                <strong>Anbieter dieses Internet-Angebots:</strong>;
+                <br>
+                Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH
+            </p>
+            <p>
+                <strong>Rechtsform:</strong>
+                <br>
+                Gesellschaft mit beschränkter Haftung (GmbH)
+            </p>
+            <p>
+                <strong>Gesetzlich vertreten durch:</strong>
+                <br>
+                Geschäftsführer Michael Bison
+                <br>
+                <br>
+                <strong>Orts- und Postanschrift:</strong>
+                <br>
+                Unter den Hecken 70
+                <br>
+                41539 Dormagen
+                <br>
+                <a href="mailto:info@swd-dormagen.de">info@swd-dormagen.de</a>
+            </p>
+            <p>
+                <strong>Allgemeine Kommunalaufsichtsbehörde:</strong>
+                <br>
+                Rhein-Kreis Neuss
+                <br>
+                Landrat Hans-Jürgen Petrauschke
+                <br>
+                Oberstraße 91
+                <br>
+                41460 Neuss
+                <br>
+                <a href="mailto:info@rhein-kreis-neuss.de">info@rhein-kreis-neuss.de</a>
+            </p>
+            <p>
+                <strong>Datenschutz-Aufsichtsbehörde:</strong>
+                <br>
+                Landesbeauftragte/Landesbeauftragter für Datenschutz und Informationsfreiheit Nordrhein-Westfalen
+                <br>
+                Kavalleriestraße 2
+                <br>
+                440213 Düsseldorf
+                <br>
+                <a href="mailto:poststelle@ldi.nrw.de">poststelle@ldi.nrw.de</a>
+                <br>
+                <a href="https://www.ldi.nrw.de/">https://www.ldi.nrw.de</a>
+            </p>
+            <p>
+                <strong>Inhaltlich Verantwortliche gem. § 55 Abs. 2 des Staatsvertrags für Rundfunk und Telemedien</strong>
+                <br>
+                Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH
+                <br>Unter den Hecken 70
+                <br>41539 Dormagen
+                <br>
+                <a href="mailto:info@swd-dormagen.de"></a>
+            </p>
+            <p>
+                <strong>Datenschutzbeauftragter:</strong>
+                <br>
+                Stadt Dormagen
+                <br>
+                Paul-Wierich-Platz 1
+                <br>
+                41539 Dormagen
+                <br>
+                <a href="mailto:datenschutz@stadt-dormagen.de">datenschutz@stadt-dormagen.de</a>
+            </p>
+            <p>
+                <strong>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:</strong>
+            </p>
+            <p>
+                <strong>Registereintrag:</strong>
+                <br>
+                Eintragung im Handelsregister.
+                <br>
+                Registergericht: Amtsgericht Neuss
+                <br>
+                Registernummer: HRB19073
+            </p>
+            <h3 start="2">
+            <strong>2. Haftung für eigene Inhalte</strong>
+            </h3>
+            <p>
+                Als Diensteanbieter ist die Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Die Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH ist bemüht, für die Richtigkeit, Vollständigkeit und Aktualität aller in Ihrem Internet-Angebot enthaltenen Informationen und Daten zu sorgen. Eine Haftung oder Garantie für die Richtigkeit, Vollständigkeit und Aktualität der Informationen und Daten ist jedoch ausgeschlossen.
+            </p>
+            <p>
+                Haftungsansprüche gegen die Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH, welche sich auf Schäden materieller oder ideeller Art beziehen, die durch die Nutzung oder Nichtnutzung der dargebotenen Informationen bzw. durch die Nutzung fehlerhafter und unvollständiger Informationen verursacht wurden, sind grundsätzlich ausgeschlossen, sofern seitens der Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH kein nachweislich vorsätzliches oder grob fahrlässiges Verschulden vorliegt.
+            </p>
+            <p>
+                Die Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH bemüht sich, ihr Internet-Angebot möglichst unterbrechungsfrei zum Abruf anzubieten. Auch bei aller Sorgfalt können aber Ausfallzeiten nicht ausgeschlossen werden. Die Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH behält es sich ausdrücklich vor, Teile der Seiten oder das gesamte Angebot ohne gesonderte Ankündigung zu verändern, zu ergänzen, zu löschen oder die Veröffentlichung zeitweise oder endgültig einzustellen. Für durch nicht fehlerfrei angelegte Dateien oder nicht fehlerfrei strukturierte Formate bedingte Unterbrechungen oder anderweitige Störungen kann keine Gewähr übernommen werden.
+            </p>
+            <p>
+                Die Nutzung der Inhalte dieses Internet-Angebotes erfolgt auf eigene Gefahr der das Angebot nutzenden Personen. Namentlich gekennzeichnete Beiträge geben die Meinung des jeweiligen Autors bzw. der jeweiligen Autorin und nicht immer die Meinung der Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH wieder. Mit der reinen Nutzung des Internet-Angebotes der Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH kommt keinerlei öffentlich-rechtliches oder privatrechtliches Rechtsverhältnis zwischen den nutzenden Personen und der Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH zustande, es sei denn, dass ausdrücklich etwas anderes beschrieben ist.
+            </p>
+            <h3 start="3">
+            <strong>3. Haftung für fremde Inhalte</strong>
+            </h3>
+            <p>
+                Nach §§ 8 bis 10 TMG ist die Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH als Diensteanbieter nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden diese Inhalte umgehend entfernt.
+            </p>
+            <p>
+                Das Internet-Angebot der Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH verwendet auch dynamische ("lebende") Verweisungen auf fremde Internet-Seiten, die außerhalb des Verantwortungsbereiches der Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH liegen ("Hyper-Links). Das Setzen von externen Links bedeutet nicht, dass sich die Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH die hinter dem Verweis oder Link liegenden Inhalte zu eigen macht.
+            </p>
+            <p>
+                Die Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH erklärt hiermit ausdrücklich, dass zum Zeitpunkt der Linksetzung keine illegalen Inhalte auf den zu verlinkenden Seiten erkennbar waren. Auf die aktuelle und zukünftige Gestaltung, die Inhalte oder die Urheberschaft der verlinkten/verknüpften Seiten hat die Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH keinerlei Einfluss. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Deshalb distanziert sie sich hiermit ausdrücklich von allen Inhalten aller verlinkten/verknüpften Seiten, die nach der Linksetzung verändert wurden.
+            </p>
+            <p>
+                Diese Feststellung gilt für alle innerhalb des eigenen Internetangebotes gesetzten Links und Verweise sowie für Fremdeinträge in von der Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH eingerichteten Gästebüchern, Diskussionsforen, Linkverzeichnissen, Mailinglisten und in allen anderen Formen von Datenbanken, auf deren Inhalt externe Schreibzugriffe möglich sind. Für illegale, fehlerhafte oder unvollständige Inhalte und insbesondere für Schäden, die aus der Nutzung oder Nichtnutzung solcherart dargebotener Informationen entstehen, haftet allein der Anbieter der Seite, auf welche verwiesen wurde, nicht derjenige, der über Links auf die jeweilige Veröffentlichung lediglich verweist.
+            </p>
+            <h3 start="4">
+            <strong>4. Urheber- und Leistungsschutzrechte</strong>
+            </h3>
+            <p>
+                Die in diesem Internet-Angebot veröffentlichten Inhalte und Werke unterliegen dem deutschen Urheber- und Leistungsschutzrecht. Jede vom deutschen Urheber- und Leistungsschutzrecht nicht zugelassene Verwertung bedarf der vorherigen schriftlichen Zustimmung des Anbieters oder jeweiligen Rechteinhabers. Dies gilt insbesondere für Vervielfältigung, Bearbeitung, übersetzung, Einspeicherung, Verarbeitung, Verwertung und Wiedergabe von Inhalten in Datenbanken oder anderen elektronischen Medien und Systemen. Inhalte und Rechte Dritter sind dabei als solche gekennzeichnet. Die unerlaubte Vervielfältigung oder Weitergabe einzelner Inhalte oder kompletter Seiten ist nicht gestattet und strafbar. Lediglich die Herstellung von Kopien und Downloads für den persönlichen, privaten und nicht kommerziellen Gebrauch ist erlaubt.
+            </p>
+            <p>
+                Alle innerhalb des Internetangebotes genannten und ggf. durch Dritte geschützten Marken- und Warenzeichen unterliegen uneingeschränkt den Bestimmungen des jeweils gültigen Kennzeichenrechts und den Besitzrechten der jeweiligen eingetragenen Eigentümer. Allein aufgrund der bloßen Nennung ist nicht der Schluss zu ziehen, dass Markenzeichen nicht durch Rechte Dritter geschützt sind.
+            </p>
+            <p>
+                Soweit die Inhalte im Internet-Angebot der Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH nicht von dieser erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollte trotzdem eine Urheberrechtsverletzung beobachtet werden, wird um einen entsprechenden Hinweis gebeten. Bei Bekanntwerden von Rechtsverletzungen werden derartige Inhalte umgehend entfernt.
+            </p>
+            <p>
+                Das Copyright für von der Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH ihrem Internet-Angebot veröffentlichten Inhalte (Text-, Audio- und Videodokumente, Darstellungen, Symbole, Grafiken usw.) bleibt bei der Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH. Eine Vervielfältigung oder Verwendung solcher Inhalte in anderen elektronischen oder gedruckten Publikationen ist ohne ausdrückliche Zustimmung der Stadtmarketing- und Wirtschaftsförderungsgesellschaft Dormagen mbH nicht gestattet.
+            </p>
+            <br>
+        </div>
+</div>
+</body>
+</html>

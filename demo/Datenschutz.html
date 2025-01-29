@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>EasyDigiTwin Demo</title>
+    <style>
+
+        body {
+            background-color: #CCD5DE;
+            height: 100vh;
+            margin: 0px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3333CC;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #1111AA;
+        }
+
+        .demo-content {
+            display: block;
+            margin: 10px;
+        }
+
+        .header-content-container {
+            background-color: #e7e9eb;
+            border-radius: 7px;
+            -moz-box-shadow: 0px 2px 10px -1px rgb(0 0 0 / 39%);
+            -webkit-box-shadow: 0px 2px 10px -1px rgb(0 0 0 / 39%);
+            box-shadow: 0px 2px 10px -1px rgb(0 0 0 / 39%);
+            max-width: 1065px;
+            min-width: 350px;
+            margin: auto;
+            font-family: "PT Sans", Arial, serif;
+            font-size: 12pt;
+        }
+
+        .title {
+            display: flex;
+            text-align: center;
+            padding: 10px;
+            -moz-box-shadow: 0 5px 10px -5px #aaa;
+            -webkit-box-shadow: 0 5px 10px -5px #aaa;
+            box-shadow: 0 5px 10px -5px #aaa;
+            margin-bottom: 15px;
+            font-family: "PT Sans", Arial, serif;
+            font-size: 15pt;
+            color: #111111;
+        }
+
+        .small-title {
+            font-family: "PT Sans", Arial, serif;
+            font-size: 12pt;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 5px;
+        }
+
+        .content-row {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .demo-scene-panel {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            color: #111111;
+            border-radius: 7px;
+            border: #bbbbbb 1px solid;
+            background-color: #f1f1f1;
+            width: 220px;
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+
+        .demo-scene-panel.clickable:hover {
+            color: #333333;
+            border-color: #8a9ba8;
+            background-color: #e4edfc;
+            cursor: pointer;
+        }
+
+        .demo-scene-panel-image {
+            width: 95%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            width: 209px;
+            height: 149px;
+        }
+
+        .demo-scene-button-row {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .demo-scene-button {
+            border-radius: 5px;
+            border: #cccccc 2px solid;
+            background-color: #eeeeee;
+            color: #666666;
+            padding: 3px 7px 3px 7px;
+        }
+
+        .demo-scene-button:hover {
+            color: #333333;
+            border: #aaaaaa 2px solid;
+            background-color: #e7eaf1;
+            cursor: pointer;
+        }
+
+        .button {
+            color: #3C5060;
+            border: #AEC5D7 1px solid;
+            background-color: #E5EAEE;
+            padding: 5px;
+            border-radius: 3px;
+            filter: drop-shadow(2px 2px 3px #aaaaaa);
+        }
+
+        .button:hover {
+            cursor: pointer;
+            color: #1B242B;
+            background-color: #E4EFF9;
+            border-color: #4A5A67;
+        }
+
+        .text-input {
+            border: hsl(0, 0%, 67%) 1px solid;
+            background-color: #ffffff;
+            padding: 4px;
+            border-radius: 3px;
+        }
+
+        .checkbox-input {
+            width: 17px;
+            height: 17px;
+            padding: 0px;
+            margin: 0;
+        }
+
+        .splat-panel {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            color: #111111;
+            font-size: 12pt;
+            font-family: "PT Sans", Arial, serif;
+            border-radius: 7px;
+            border: #bbbbbb 1px solid;
+            background-color: #f1f1f1;
+            width: 310px;
+            height: 280px;
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+
+        .loading-icon {
+            width: 35px;
+            padding: 15px;
+            background: #324d70;
+            z-index: 99999;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            --_m: conic-gradient(#0000, #000),
+            linear-gradient(#000 0 0) content-box;
+            -webkit-mask: var(--_m);
+            mask: var(--_m);
+            -webkit-mask-composite: source-out;
+            mask-composite: subtract;
+            box-sizing: border-box;
+            animation: ply-load 1s linear infinite;
+        }
+
+        .controls-key {
+            font-weight: bold;
+            padding: 3px;
+            border: #aaaaaa 1px solid;
+            background-color: #dddddd;
+        }
+
+        .controls-key-description {
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        .file-ext {
+            border: #bababa 1px solid;
+            border-radius: 3px;
+            background-color: #e6e6e6;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            margin-left: 3px;
+            margin-right: 3px;
+        }
+
+        .file-ext-small {
+            border: #ababab 1px solid;
+            border-radius: 3px;
+            background-color: #dfdfdf;
+            padding-left: 4px;
+            padding-right: 4px;
+            padding-bottom: 1px;
+            margin-left: 3px;
+            margin-right: 3px;
+        }
+
+        .valid-value-label {
+            color: #888888;
+            font-size: 10pt;
+        }
+
+        @keyframes ply-load {
+            to {
+                transform: rotate(1turn)
+            }
+        }
+
+        @media (max-width: 740px) {
+
+            .demo-scene-panel {
+                width: 340px;
+            }
+
+            .splat-panel {
+                width: 340px;
+            }
+
+            .demo-scene-panel-image {
+                width: 95%;
+                height: 95%;
+            }
+
+        }
+
+        @media (max-width: 370px) {
+
+            .demo-scene-panel {
+                max-width: 300px;
+            }
+
+            .splat-panel {
+                max-width: 300px;
+            }
+
+            .header-content-container {
+                min-width: 330px;
+            }
+
+            .demo-scene-panel-image {
+                width: 95%;
+                height: 95%;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="header-content-container">
+    <div class="title">
+        <div style="margin: auto">
+            Datenschutz
+        </div>
+    </div>
+    <div style="padding-left: 20px; padding-right: 20px;">
+        <div class="article-content link-primary">
+            <h3 class="no_toc" id="inhaltsverzeichnis">Inhaltsverzeichnis</h3>
+            <ul id="markdown-toc">
+                <li><a href="#muster-datenschutzerklärung" id="markdown-toc-muster-datenschutzerklärung">Muster
+                    Datenschutzerklärung</a></li>
+                <li><a href="#rechtliche-hinweise" id="markdown-toc-rechtliche-hinweise">Rechtliche Hinweise</a></li>
+            </ul>
+            <h3 id="muster-datenschutzerklärung">Muster Datenschutzerklärung</h3>
+            <p><strong>Hosting der Seite</strong><br> Unser Hoster erhebt in sog. Logfiles folgende Daten, die Ihr Browser
+                übermittelt:</p>
+            <p>IP-Adresse, die Adresse der vorher besuchten Website (Referer Anfrage-Header), Datum und Uhrzeit der
+                Anfrage, Zeitzonendifferenz zur Greenwich Mean Time, Inhalt der Anforderung, HTTP-Statuscode,
+                übertragene Datenmenge, Website, von der die Anforderung kommt und Informationen zu Browser und
+                Betriebssystem.</p>
+            <p>Das ist erforderlich, um unsere Website anzuzeigen und die Stabilität und Sicherheit zu gewährleisten.
+                Dies entspricht unserem berechtigten Interesse im Sinne des Art. 6 Abs. 1 S. 1 lit. f DSGVO.</p>
+            <p>Es erfolgt kein Tracking und wir haben auf diese Daten keinen direkten Zugriff.</p>
+            <p>Wir setzen für die Zurverfügungstellung unserer Website folgenden Hoster ein:</p>
+            <p>GitHub Inc.<br> 88 Colin P Kelly Jr St<br> San Francisco, CA 94107<br> United States</p>
+            <p>Dieser ist Empfänger Ihrer personenbezogenen Daten. Dies entspricht unserem berechtigten Interesse im
+                Sinne des Art. 6 Abs. 1 S. 1 lit. f DSGVO, selbst keinen Server in unseren Räumlichkeiten vorhalten zu
+                müssen. Serverstandort ist USA.</p>
+            <p>Weitere Informationen zu Widerspruchs- und Beseitigungsmöglichkeiten gegenüber GitHub finden Sie unter:
+                <a href="https://docs.github.com/en/free-pro-team@latest/github/site-policy/github-privacy-statement#github-pages">https://docs.github.com/en/free-pro-team@latest/github/site-policy/github-privacy-statement#github-pages</a>
+            </p>
+            <p>Sie haben das Recht der Verarbeitung zu widersprechen. Ob der Widerspruch erfolgreich ist, ist im Rahmen
+                einer Interessenabwägung zu ermitteln.</p>
+            <p>Die Daten werden gelöscht, sobald der Zweck der Verarbeitung entfällt.</p>
+            <p>Die Verarbeitung der unter diesem Abschnitt angegebenen Daten ist weder gesetzlich noch vertraglich
+                vorgeschrieben. Die Funktionsfähigkeit der Website ist ohne die Verarbeitung nicht gewährleistet.</p>
+            <p>GitHub hat Compliance-Maßnahmen für internationale Datenübermittlungen umgesetzt. Diese gelten für alle
+                weltweiten Aktivitäten, bei denen GitHub personenbezogene Daten von natürlichen Personen in der EU
+                verarbeitet. Diese Maßnahmen basieren auf den EU-Standardvertragsklauseln (SCCs). Weitere Informationen
+                finden Sie unter: <a
+                        href="https://docs.github.com/en/free-pro-team@latest/github/site-policy/github-data-protection-addendum#attachment-1--the-standard-contractual-clauses-processors">https://docs.github.com/en/free-pro-team@latest/github/site-policy/github-data-protection-addendum#attachment-1–the-standard-contractual-clauses-processors</a>
+            </p>
+
+            <p><strong>Hosting der Gaussian Splats</strong><br>
+                Die auf dieser Seite angezeigten Gaussian Splats werden dynamisch vom Content Delivery Network von <a href="https://huggingface.co">Hugging Face</a> bezogen. Weitere Informationen zur Datenschutzrichtlinie von Hugging Face finden Sie unter: <a href="https://huggingface.co/privacy">https://huggingface.co/privacy</a>
+            </p>
+
+            <h3 id="rechtliche-hinweise">Rechtliche Hinweise</h3>
+            <p>Grundsätzlich ist ein Auftragsverarbeitungsvertrag mit dem Hoster abzuschließen. Das bayerische Landesamt
+                für Datenschutzaufsicht hat für das Hosting rein statischer Websites eine Ausnahme gemacht. Für den
+                Fall, dass die Webseite der Selbstdarstellung dient, z.B. von Vereinen oder Kleinunternehmen, keine
+                personenbezogenen Daten an den Betreiber fließen und kein Tracking stattfindet, liegt keine
+                Auftragsverarbeitung vor. Weiter heißt es: „Die Tatsache, dass auch beim Hosting von statischen
+                Webseiten zwangsläufig IP-Adressen, d.h. personenbezogene Daten, verarbeitet werden müssen, führt nicht
+                zur Annahme einer Auftragsverarbeitung. Das wäre nicht sachgerecht. Die (kurzfristige)
+                IP-Adressenspeicherung ist vielmehr noch der TK-Zugangsvermittlung des Website-Hosters nach dem TKG
+                zuzurechnen und dient in erster Linie Sicherheitszwecken des Hosters.“ (<a
+                        href="https://www.lda.bayern.de/media/veroeffentlichungen/FAQ_Hosting_keine_Auftragsverarbeitung.pdf">https://www.lda.bayern.de/media/veroeffentlichungen/FAQ_Hosting_keine_Auftragsverarbeitung.pdf</a>)
+                Wir gehen davon aus, dass diese Ausnahme auf GitHub Pages anzuwenden ist.</p></div>
+    </div>
+</div>
+</body>
+</html>
